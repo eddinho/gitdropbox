@@ -4,6 +4,7 @@ The script creates a new git project in `~/"new project"` and initializes a git 
 
 ## Usage
 ```bash
+mkdir ~/dev
 cd ~/dev
 
 clone https://github.com/eddinho/gitdropbox.git
