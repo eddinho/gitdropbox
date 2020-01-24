@@ -1,12 +1,13 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-    echo 'Error -> enter project name. Something like: gitdropbox "project"'
+    echo '\!/ Please enter a project name first !' 
+    echo 'Use something like: gitdropbox new_project'
     exit 0
 fi
 
-mkdir -p ~/$1
-cd ~/$1
+mkdir -p ~/dev/$1
+cd ~/dev/$1
 git init
 git add .
 echo "project $1 created"
@@ -15,7 +16,7 @@ mkdir -p ~/Dropbox/Git
 cd ~/Dropbox/Git
 git init --bare $1.git
 
-cd ~/$1
+cd ~/dev/$1
 git remote add origin ~/Dropbox/Git/$1.git
 echo >> "README.md"
 git add *
