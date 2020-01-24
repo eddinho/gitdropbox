@@ -12,6 +12,6 @@ git clone https://github.com/eddinho/gitdropbox.git
 
 sudo cp ~/dev/gitdropbox/gitdropbox /usr/local/bin/
 
-sudo chmod +x usr/local/bin/gitdropbox
+sudo chmod +x /usr/local/bin/gitdropbox
 
 gitdropbox newProject
