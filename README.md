@@ -119,10 +119,10 @@ bash tests/smoke.sh
   Keep LF line endings (enforced via `.gitattributes`).
 
 ## Contributing
-See `doc/CONTRIBUTING.md`.
+See [CONTRIBUTING.md](doc/CONTRIBUTING.md).
 
 ## Release Process
-See `doc/RELEASE_CHECKLIST.md`.
+See [RELEASE_CHECKLIST.md](doc/RELEASE_CHECKLIST.md).
 
 ## License
 MIT
