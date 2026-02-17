@@ -5,7 +5,7 @@ Use this checklist before publishing a new version of `gitdropbox`.
 ## 1. Scope And Version
 - [ ] Confirm release scope is frozen and reviewed.
 - [ ] Update `VERSION` in `gitdropbox`.
-- [ ] Update `CHANGELOG.md` with release date and key changes.
+- [ ] Update `doc/CHANGELOG.md` with release date and key changes.
 
 ## 2. Quality Gates
 - [ ] Run syntax check:
@@ -19,7 +19,7 @@ Use this checklist before publishing a new version of `gitdropbox`.
   - `./gitdropbox --version`
 
 ## 3. Docs And Metadata
-- [ ] Ensure `README.md` options and examples match script behavior.
+- [ ] Ensure `doc/README.md` options and examples match script behavior.
 - [ ] Confirm `LICENSE` is present and correct.
 - [ ] Ensure `.gitattributes` and `.editorconfig` are up to date.
 
@@ -35,7 +35,7 @@ Use this checklist before publishing a new version of `gitdropbox`.
 
 ## 5. Publish
 - [ ] Create GitHub Release from tag `vX.Y.Z`.
-- [ ] Copy highlights from `CHANGELOG.md` into release notes.
+- [ ] Copy highlights from `doc/CHANGELOG.md` into release notes.
 - [ ] Verify CI passed on tag/branch.
 
 ## 6. Post-Release

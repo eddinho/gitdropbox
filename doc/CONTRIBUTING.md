@@ -30,7 +30,7 @@ If `shellcheck` is not installed locally, CI will still run it.
 1. Describe the problem and why your change is needed.
 2. Keep changes focused and minimal.
 3. Include test updates when behavior changes.
-4. Update `README.md` and `CHANGELOG.md` when user-facing behavior changes.
+4. Update `doc/README.md` and `doc/CHANGELOG.md` when user-facing behavior changes.
 
 ## Release Process
-Maintainers should follow `RELEASE_CHECKLIST.md` before publishing.
+Maintainers should follow `doc/RELEASE_CHECKLIST.md` before publishing.
