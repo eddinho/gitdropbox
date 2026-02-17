@@ -1,18 +1,33 @@
 # gitdropbox
 
-Create a local project folder and matching bare Git repository in Dropbox, then push your initial branch.
+`gitdropbox` is a Bash CLI that creates a local project and a matching bare Git repository in Dropbox, then connects and pushes your initial branch.
+
+## Why Use It
+- Start a new project and Dropbox-backed remote in one command.
+- Keep data local and simple (no extra service required).
+- Avoid common setup mistakes with strict validation and safer defaults.
 
 ## Features
-- Strict Bash mode (`set -euo pipefail`) and clear error messages
-- Configurable dev/dropbox paths, branch, and remote name
-- Supports CLI flags, `git config` defaults, and environment variable overrides
-- Validates branch names, remote names, and existing bare repo integrity
-- Safe remote behavior: refuses mismatched remotes unless `--update-remote` is set
-- Works on Linux, macOS, and Git Bash on Windows
+- Strict Bash mode (`set -euo pipefail`) with actionable errors
+- Configurable dev folder, Dropbox folder, branch, and remote name
+- CLI flags + `git config` defaults + environment variable overrides
+- Bare-repository integrity checks before use
+- Safe remote handling (`--update-remote` required to repoint existing remotes)
+- Linux, macOS, and Git Bash (Windows) support
 
-## Prerequisites
-- Git installed and available on PATH
-- Bash shell (Git Bash on Windows)
+## Requirements
+- Git available on `PATH`
+- Bash shell (`bash` / Git Bash on Windows)
+
+## Quick Start
+```bash
+gitdropbox my-project
+```
+
+This will:
+1. Create `~/dev/my-project` (by default)
+2. Create `~/Dropbox/Git/my-project.git` (bare repo)
+3. Initialize local Git, add `origin`, commit, and push
 
 ## Installation
 
@@ -37,40 +52,37 @@ gitdropbox --version
 
 ## Usage
 ```bash
-gitdropbox my-project
+gitdropbox [OPTIONS] <project-name>
 ```
 
 ### Options
-```bash
-gitdropbox [OPTIONS] <project-name>
-
-Options:
-  -h, --help               Show help
-  -V, --version            Show version
-  -n, --name NAME          Project name (prompts if missing)
-  -d, --dev-dir PATH       Local projects folder (default: ~/dev)
-  -D, --dropbox-dir PATH   Dropbox git folder (default: ~/Dropbox/Git)
-  -b, --branch NAME        Branch name (default: main)
-  -r, --remote NAME        Remote name (default: origin)
-  -m, --message TEXT       Commit message (default: "Initial commit")
-  -f, --force              Allow existing non-empty project folder
-      --update-remote      Update remote URL if it points elsewhere
-      --no-color           Disable colored output
-      --no-readme          Do not create README.md if missing
-      --no-commit          Do not commit or push changes
-```
+| Option | Description |
+| --- | --- |
+| `-h, --help` | Show help |
+| `-V, --version` | Show version |
+| `-n, --name NAME` | Project name (prompts if missing) |
+| `-d, --dev-dir PATH` | Local projects folder (default: `~/dev`) |
+| `-D, --dropbox-dir PATH` | Dropbox Git folder (default: `~/Dropbox/Git`) |
+| `-b, --branch NAME` | Branch name (default: `main`) |
+| `-r, --remote NAME` | Remote name (default: `origin`) |
+| `-m, --message TEXT` | Commit message (default: `Initial commit`) |
+| `-f, --force` | Allow existing non-empty project folder |
+| `--update-remote` | Update remote URL if it points elsewhere |
+| `--no-color` | Disable colored output |
+| `--no-readme` | Skip creating `README.md` |
+| `--no-commit` | Skip commit and push |
 
 ### Examples
 ```bash
 gitdropbox my-project
 gitdropbox -d ~/work -D ~/Dropbox/Git -b main my-project
-gitdropbox --no-commit my-project
 gitdropbox --name=my-project --message="Bootstrap repo"
+gitdropbox --no-commit my-project
 gitdropbox --update-remote my-project
 ```
 
 ## Configuration
-You can set defaults via git config:
+Set defaults with Git config:
 ```bash
 git config --global gitdropbox.devdir ~/dev
 git config --global gitdropbox.dropboxdir ~/Dropbox/Git
@@ -78,7 +90,7 @@ git config --global gitdropbox.branch main
 git config --global gitdropbox.remote origin
 ```
 
-Environment variable overrides:
+Override via environment variables:
 ```bash
 export GITDROPBOX_DEV_DIR=~/dev
 export GITDROPBOX_DROPBOX_DIR=~/Dropbox/Git
@@ -86,24 +98,30 @@ export GITDROPBOX_BRANCH=main
 export GITDROPBOX_REMOTE=origin
 ```
 
+Precedence is: CLI options > environment variables > Git config > built-in defaults.
+
 ## Development
 ```bash
-shellcheck gitdropbox
+bash -n gitdropbox
+shellcheck gitdropbox tests/smoke.sh
 bash tests/smoke.sh
 ```
 
 ## Troubleshooting
-- If the project folder exists and is not empty, use `--force` or pick a new name.
-- If the Dropbox path exists but is not a bare Git repo, the script will stop with an error.
-- If commit fails, set identity first:
+- Existing non-empty project directory:
+  Use `--force` or choose another name.
+- Existing Dropbox path is not a bare repository:
+  Move or rename the path, then rerun.
+- Commit fails due missing identity:
   - `git config --global user.name "Your Name"`
   - `git config --global user.email "you@example.com"`
-- On Windows, ensure the script uses LF line endings.
+- Windows line endings:
+  Keep LF line endings (enforced via `.gitattributes`).
 
 ## Contributing
 See `CONTRIBUTING.md`.
 
-## Releases
+## Release Process
 See `RELEASE_CHECKLIST.md`.
 
 ## License
