@@ -19,7 +19,7 @@ Use this checklist before publishing a new version of `gitdropbox`.
   - `./gitdropbox --version`
 
 ## 3. Docs And Metadata
-- [ ] Ensure `doc/README.md` options and examples match script behavior.
+- [ ] Ensure `README.md` options and examples match script behavior.
 - [ ] Confirm `LICENSE` is present and correct.
 - [ ] Ensure `.gitattributes` and `.editorconfig` are up to date.
 
