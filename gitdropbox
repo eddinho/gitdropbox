@@ -47,7 +47,7 @@ expand_tilde() {
         "~")
             printf '%s\n' "$HOME"
             ;;
-        "~/"*)
+        \~/*)
             printf '%s\n' "$HOME/${value#~/}"
             ;;
         *)
